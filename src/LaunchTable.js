@@ -44,7 +44,113 @@ const jsonResponse = JSON.parse(`{
           "id": "821c1514-c7d5-4eab-ab4b-fd4a35ace1c5",
           "launchDate": "2010-12-08T15:43:00.000Z",
           "missionPatchUrl": "https://images2.imgbox.com/d9/3e/FfrN88ry_o.png"
-      }
+      },
+      {
+        "withReddit": true,
+        "articleUrl": "https://spaceflightnow.com/2016/06/15/spacex-successfully-fires-satellites-into-orbit-but-loses-booster-on-landing/",
+        "flightNumber": "31",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "ABS-2A / Eutelsat 117W B",
+        "rocketType": "FT",
+        "details": "One year after pioneering this technique on flight 16, Falcon again launched two Boeing 702SP gridded ion thruster satellites in a dual-stack configuration, with the two customers sharing the rocket and mission costs. First stage landing attempt on drone ship failed on landing due to low thrust on one of the three landing engines.",
+        "landSuccess": false,
+        "id": "4ee563a3-5991-42f6-a0c7-3714ae3e1cab",
+        "launchDate": "2016-06-15T14:29:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/ae/e9/VTH2y7S5_o.png"
+    },
+    {
+        "withReddit": false,
+        "articleUrl": "https://www.nasa.gov/mission_pages/station/main/spacex-crs1-target.html",
+        "flightNumber": "9",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "CRS-1",
+        "rocketType": "v1.0",
+        "details": "CRS-1 successful, but the secondary payload was inserted into abnormally low orbit and lost due to Falcon 9 boost stage engine failure, ISS visiting vehicle safety rules, and the primary payload owner's contractual right to decline a second ignition of the second stage under some conditions.",
+        "landSuccess": false,
+        "id": "69c2c150-e7de-45d8-afb2-37475ac717e9",
+        "launchDate": "2012-10-08T00:35:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/0b/33/2eLGEejP_o.png"
+    },
+    {
+        "withReddit": true,
+        "articleUrl": "https://spaceflightnow.com/2015/02/12/space-weather-observatory-blasts-off-after-17-year-wait/",
+        "flightNumber": "20",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "DSCOVR",
+        "rocketType": "v1.1",
+        "details": "First launch under USAF's OSP 3 launch contract. First SpaceX launch to put a satellite to an orbit with an orbital altitude many times the distance to the Moon: Sun-Earth libration point L1. The first stage made a test flight descent to an over-ocean landing within 10 m (33 ft) of its intended target.",
+        "landSuccess": true,
+        "id": "5651ac70-296f-4236-9463-01413c4a5d55",
+        "launchDate": "2015-02-11T23:03:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/63/c5/0OIpD59z_o.png"
+    },
+    {
+        "withReddit": true,
+        "articleUrl": "https://spaceflightnow.com/2018/10/08/spacex-aces-first-rocket-landing-in-california-after-launching-argentine-satellite/",
+        "flightNumber": "69",
+        "reused": true,
+        "rocketName": "Falcon 9",
+        "missionName": "SAOCOM 1A",
+        "rocketType": "FT",
+        "details": "SpaceX's seventeenth flight of 2018 was the first launch of the Saocom Earth observation satellite constellation of the Argentine Space Agency CONAE. The second launch of Saocom 1B will happen in 2019. This flight marked the first RTLS launch out of Vandenberg, with a landing on the concrete pad at SLC-4W, very close to the launch pad.",
+        "landSuccess": true,
+        "id": "23885bd9-1b49-419c-a127-6018d4f04b07",
+        "launchDate": "2018-10-08T02:22:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/ae/11/H85gskPQ_o.png"
+    },
+    {
+        "withReddit": true,
+        "articleUrl": "https://www.space.com/36852-spacex-launches-inmarsat-5-f4-satellite.html",
+        "flightNumber": "40",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "Inmarsat-5 F4",
+        "rocketType": "FT",
+        "details": "At 6,070 kg this was the heaviest payload launched to GTO by a Falcon 9 rocket. The launch was originally scheduled for the Falcon Heavy, but performance improvements allowed the mission to be carried out by an expendable Falcon 9 instead.",
+        "landSuccess": false,
+        "id": "b0305329-1200-4d0a-a734-b5db989acc3b",
+        "launchDate": "2017-05-15T23:21:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/82/d6/SCoNa79H_o.png"
+    },
+    {
+        "withReddit": false,
+        "flightNumber": "91",
+        "reused": true,
+        "rocketName": "Falcon 9",
+        "missionName": "CRS-20",
+        "rocketType": "FT",
+        "landSuccess": false,
+        "id": "7eaba052-dca0-4c56-b304-f2b27323633d",
+        "launchDate": "2020-03-02T06:45:00.000Z"
+    },
+    {
+        "withReddit": true,
+        "articleUrl": "https://spaceflightnow.com/2016/05/27/spacex-logs-successful-late-afternoon-launch-for-thaicom/",
+        "flightNumber": "30",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "Thaicom 8",
+        "rocketType": "FT",
+        "details": "Manufactured by Orbital ATK, the 3,100-kilogram (6,800 lb) Thaicom 8 communications satellite will serve Thailand, India and Africa from the 78.5° East geostationary location. It is equipped with 24 active Ku-band transponders.",
+        "landSuccess": true,
+        "id": "7d5e82d9-9608-446d-9f9b-36cc6d9b8fbb",
+        "launchDate": "2016-05-27T21:39:00.000Z",
+        "missionPatchUrl": "https://images2.imgbox.com/d1/de/waYRCanq_o.png"
+    },
+    {
+        "withReddit": false,
+        "flightNumber": "101",
+        "reused": false,
+        "rocketName": "Falcon 9",
+        "missionName": "GPS III SV04",
+        "rocketType": "FT",
+        "landSuccess": false,
+        "id": "f71ebea6-b8a1-4958-ab1f-48b7bd87cb05",
+        "launchDate": "2020-08-01T00:00:00.000Z"
+    }
   ]
 }`);
 
@@ -271,9 +377,9 @@ const LaunchTable = props => {
             Article
           </div>
         </div>
-        <TableRow data={jsonResponse.data[0]} />
-        <TableRow data={jsonResponse.data[1]} />
-        <TableRow data={jsonResponse.data[2]} />
+        {jsonResponse.data.map(row => {
+          return <TableRow key={row.id} data={row} />;
+        })}
       </div>
     </div>
   );
