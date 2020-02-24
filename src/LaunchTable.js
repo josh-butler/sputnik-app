@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import LoopIcon from '@material-ui/icons/Sync';
-import CheckIcon from '@material-ui/icons/Check';
-import ImageIcon from '@material-ui/icons/PanoramaOutlined';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import linkIcon from './assets/link.svg';
+import TableRow from './components/TableRow';
+import CheckBox from './components/CheckBox';
 
 const API_URL = 'https://rozv4aak55.execute-api.us-east-1.amazonaws.com/prod';
 
@@ -54,28 +53,9 @@ const styles = {
     cursor: 'pointer',
     margin: 22,
   },
-  checkbox: {
-    border: '1px solid rgba(255,255,255,0.7)',
-    height: 22,
-    width: 22,
-    borderRadius: 4,
-    paddingRight: 2,
-    paddingBottom: 2,
-    cursor: 'pointer',
-  },
-  checkContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: 20,
-  },
   checkGroup: {
     display: 'flex',
     marginRight: 12,
-  },
-  label: {
-    color: 'rgba(255,255,255,0.8)',
-    fontSize: 14,
-    margin: '0 11px',
   },
   tableHead: {
     width: '100%',
@@ -92,98 +72,6 @@ const styles = {
     display: 'flex',
     width: '10vw',
   },
-  rowContainer: {
-    width: '100%',
-    height: 65,
-    display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: '#dcdcdc',
-    fontColor: '#444444',
-    margin: '7px 0',
-    borderRadius: 7,
-    alignItems: 'center',
-  },
-};
-
-const CheckBox = ({ checked, label, onCheck, target }) => {
-  return (
-    <div
-      style={styles.checkContainer}
-      onClick={() => onCheck(target, !checked)}
-    >
-      <div style={styles.checkbox}>
-        {checked && <CheckIcon style={{ color: '#13A2E8' }} />}
-      </div>
-      <div style={styles.label}>{label}</div>
-    </div>
-  );
-};
-
-const renderBadge = ({ missionPatchUrl }) => {
-  if (missionPatchUrl) {
-    return <img src={missionPatchUrl} alt="badge" height="40" />;
-  }
-  return <ImageIcon style={{ color: '#939393', fontSize: 40 }} />;
-};
-
-const formatDate = date => {
-  const dt = new Date(date);
-  return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
-};
-
-const TableRow = ({ data }) => {
-  const {
-    rocketName,
-    rocketType,
-    launchDate,
-    details,
-    flightNumber,
-    articleUrl,
-  } = data;
-
-  return (
-    <div style={styles.rowContainer}>
-      <div
-        style={{ ...styles.headCol, width: '5vw', justifyContent: 'center' }}
-      >
-        {renderBadge(data)}
-      </div>
-      <div style={styles.headCol}>{rocketName}</div>
-      <div style={styles.headCol}>{rocketType}</div>
-      <div style={styles.headCol}>{formatDate(launchDate)}</div>
-      <div
-        style={{
-          ...styles.headCol,
-          width: '40vw',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          display: 'block',
-        }}
-      >
-        {details}
-      </div>
-      <div
-        style={{ ...styles.headCol, width: '5vw', justifyContent: 'center' }}
-      >
-        {flightNumber}
-      </div>
-      <div
-        style={{ ...styles.headCol, width: '5vw', justifyContent: 'center' }}
-      >
-        {articleUrl && (
-          <a href={articleUrl} target="_blank" rel="noopener noreferrer">
-            <img
-              src={linkIcon}
-              height="20"
-              alt="article"
-              style={{ cursor: 'pointer' }}
-            />
-          </a>
-        )}
-      </div>
-    </div>
-  );
 };
 
 const LaunchTable = props => {
