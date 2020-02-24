@@ -1,5 +1,7 @@
 import React from 'react';
 import LoopIcon from '@material-ui/icons/Sync';
+import CheckIcon from '@material-ui/icons/Check';
+// import { Checkbox } from '@material-ui/core';
 
 const styles = {
   title: {
@@ -14,6 +16,7 @@ const styles = {
     borderRadius: '7px 7px 0 0',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 22,
     marginTop: 10,
   },
@@ -42,6 +45,38 @@ const styles = {
     opacity: '1.0 !important',
     cursor: 'pointer',
   },
+  checkbox: {
+    border: '1px solid rgba(255,255,255,0.7)',
+    height: 22,
+    width: 22,
+    borderRadius: 4,
+    paddingRight: 2,
+    paddingBottom: 2,
+  },
+  checkContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 20,
+  },
+  checkGroup: {
+    display: 'flex',
+  },
+  label: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 14,
+    margin: '0 11px',
+  },
+};
+
+const CheckBox = ({ checked, label }) => {
+  return (
+    <div style={styles.checkContainer}>
+      <div style={styles.checkbox}>
+        {checked && <CheckIcon style={{ color: '#13A2E8' }} />}
+      </div>
+      <div style={styles.label}>{label}</div>
+    </div>
+  );
 };
 
 const LaunchTable = props => {
@@ -52,6 +87,11 @@ const LaunchTable = props => {
         <div style={styles.header}>
           <div style={styles.button}>
             <LoopIcon style={styles.icon} />
+          </div>
+          <div style={styles.checkGroup}>
+            <CheckBox checked label="LAND SUCCESS" />
+            <CheckBox label="REUSED" />
+            <CheckBox label="WITH REDDIT" />
           </div>
         </div>
       </div>
