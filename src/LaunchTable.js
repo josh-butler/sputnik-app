@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoopIcon from '@material-ui/icons/Sync';
 import CheckIcon from '@material-ui/icons/Check';
 import ImageIcon from '@material-ui/icons/PanoramaOutlined';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import linkIcon from './assets/link.svg';
 
@@ -186,23 +187,41 @@ const TableRow = ({ data }) => {
 
 const LaunchTable = props => {
   const [state, setState] = useState({
-    landSuccess: true,
-    reused: true,
-    withReddit: true,
+    landSuccess: false,
+    reused: false,
+    withReddit: false,
   });
-
+  const [query, setQuery] = useState('');
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(`${API_URL}/launch`);
+      setIsLoading(true);
+      const result = await axios(`${API_URL}/launch${query}`);
       setData(result.data);
+      setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [query]);
 
   const handleChange = (target, checked) => {
     setState({ ...state, [target]: checked });
+  };
+
+  const renderReload = () => {
+    if (isLoading) {
+      return (
+        <CircularProgress
+          style={{ color: '#FFF', height: 36, width: 36, margin: 24 }}
+        />
+      );
+    }
+    return (
+      <div style={styles.button} onClick={() => setQuery('?reused=1')}>
+        <LoopIcon style={styles.icon} />
+      </div>
+    );
   };
 
   return (
@@ -210,9 +229,7 @@ const LaunchTable = props => {
       <div style={styles.title}>SpaceX Launches</div>
       <div style={styles.body}>
         <div style={styles.header}>
-          <div style={styles.button} onClick={() => console.log(state)}>
-            <LoopIcon style={styles.icon} />
-          </div>
+          {renderReload()}
           <div style={styles.checkGroup}>
             <CheckBox
               checked={state.landSuccess}
