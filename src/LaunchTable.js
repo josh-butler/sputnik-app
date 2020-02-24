@@ -68,9 +68,12 @@ const styles = {
   },
 };
 
-const CheckBox = ({ checked, label }) => {
+const CheckBox = ({ checked, label, onCheck, target }) => {
   return (
-    <div style={styles.checkContainer}>
+    <div
+      style={styles.checkContainer}
+      onClick={() => onCheck(target, !checked)}
+    >
       <div style={styles.checkbox}>
         {checked && <CheckIcon style={{ color: '#13A2E8' }} />}
       </div>
@@ -80,6 +83,17 @@ const CheckBox = ({ checked, label }) => {
 };
 
 const LaunchTable = props => {
+  const [state, setState] = React.useState({
+    landSuccess: true,
+    reused: true,
+    withReddit: true,
+  });
+
+  const handleChange = (target, checked) => {
+    setState({ ...state, [target]: checked });
+    console.log('state: ', state);
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.title}>SpaceX Launches</div>
@@ -89,9 +103,24 @@ const LaunchTable = props => {
             <LoopIcon style={styles.icon} />
           </div>
           <div style={styles.checkGroup}>
-            <CheckBox checked label="LAND SUCCESS" />
-            <CheckBox label="REUSED" />
-            <CheckBox label="WITH REDDIT" />
+            <CheckBox
+              checked={state.landSuccess}
+              label="LAND SUCCESS"
+              onCheck={handleChange}
+              target="landSuccess"
+            />
+            <CheckBox
+              checked={state.reused}
+              label="REUSED"
+              onCheck={handleChange}
+              target="reused"
+            />
+            <CheckBox
+              checked={state.withReddit}
+              label="WITH REDDIT"
+              onCheck={handleChange}
+              target="withReddit"
+            />
           </div>
         </div>
       </div>
