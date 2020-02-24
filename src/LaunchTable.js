@@ -3,6 +3,8 @@ import LoopIcon from '@material-ui/icons/Sync';
 import CheckIcon from '@material-ui/icons/Check';
 import ImageIcon from '@material-ui/icons/PanoramaOutlined';
 
+import linkIcon from './assets/link.svg';
+
 const jsonResponse = JSON.parse(`{
   "data" : [
       {
@@ -234,7 +236,6 @@ const styles = {
     color: '#043D67',
     fontSize: 17,
     display: 'flex',
-    // flexGrow: 2,
     width: '10vw',
   },
   rowContainer: {
@@ -277,7 +278,14 @@ const formatDate = date => {
 };
 
 const TableRow = ({ data }) => {
-  const { rocketName, rocketType, launchDate, details, flightNumber } = data;
+  const {
+    rocketName,
+    rocketType,
+    launchDate,
+    details,
+    flightNumber,
+    articleUrl,
+  } = data;
 
   return (
     <div style={styles.rowContainer}>
@@ -309,7 +317,16 @@ const TableRow = ({ data }) => {
       <div
         style={{ ...styles.headCol, width: '5vw', justifyContent: 'center' }}
       >
-        Article
+        {articleUrl && (
+          <a href={articleUrl} target="_blank" rel="noopener noreferrer">
+            <img
+              src={linkIcon}
+              height="20"
+              alt="article"
+              style={{ cursor: 'pointer' }}
+            />
+          </a>
+        )}
       </div>
     </div>
   );
@@ -388,9 +405,11 @@ const LaunchTable = props => {
             Article
           </div>
         </div>
-        {jsonResponse.data.map(row => {
-          return <TableRow key={row.id} data={row} />;
-        })}
+        <div style={{ marginBottom: 40 }}>
+          {jsonResponse.data.map(row => {
+            return <TableRow key={row.id} data={row} />;
+          })}
+        </div>
       </div>
     </div>
   );
