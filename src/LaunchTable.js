@@ -37,6 +37,7 @@ const styles = {
   body: {
     width: '100%',
     height: '100%',
+    maxWidth: 1200,
   },
   icon: {
     color: '#FFF',
