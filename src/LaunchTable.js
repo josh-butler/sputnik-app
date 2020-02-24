@@ -209,6 +209,24 @@ const LaunchTable = props => {
     setState({ ...state, [target]: checked });
   };
 
+  const updateQuery = () => {
+    let newQuery = '';
+    const params = [];
+    for (let k of ['landSuccess', 'reused', 'withReddit']) {
+      if (state[k]) {
+        params.push(`${k}=1`);
+      }
+    }
+
+    if (params.length) {
+      newQuery = `?${params.join('&')}`;
+    }
+
+    if (newQuery !== query) {
+      setQuery(newQuery);
+    }
+  };
+
   const renderReload = () => {
     if (isLoading) {
       return (
@@ -218,7 +236,7 @@ const LaunchTable = props => {
       );
     }
     return (
-      <div style={styles.button} onClick={() => setQuery('?reused=1')}>
+      <div style={styles.button} onClick={updateQuery}>
         <LoopIcon style={styles.icon} />
       </div>
     );
