@@ -1,6 +1,7 @@
 import React from 'react';
 import LoopIcon from '@material-ui/icons/Sync';
 import CheckIcon from '@material-ui/icons/Check';
+import ImageIcon from '@material-ui/icons/PanoramaOutlined';
 
 const jsonResponse = JSON.parse(`{
   "data" : [
@@ -263,25 +264,27 @@ const CheckBox = ({ checked, label, onCheck, target }) => {
   );
 };
 
+const renderBadge = ({ missionPatchUrl }) => {
+  if (missionPatchUrl) {
+    return <img src={missionPatchUrl} alt="badge" height="40" />;
+  }
+  return <ImageIcon style={{ color: '#939393', fontSize: 40 }} />;
+};
+
 const formatDate = date => {
   const dt = new Date(date);
   return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
 };
 
 const TableRow = ({ data }) => {
-  const {
-    missionPatchUrl,
-    rocketName,
-    rocketType,
-    launchDate,
-    details,
-    flightNumber,
-  } = data;
+  const { rocketName, rocketType, launchDate, details, flightNumber } = data;
 
   return (
     <div style={styles.rowContainer}>
-      <div style={{ ...styles.headCol, width: '5vw' }}>
-        <img src={missionPatchUrl} alt="badge" height="40" />
+      <div
+        style={{ ...styles.headCol, width: '5vw', justifyContent: 'center' }}
+      >
+        {renderBadge(data)}
       </div>
       <div style={styles.headCol}>{rocketName}</div>
       <div style={styles.headCol}>{rocketType}</div>
@@ -353,7 +356,15 @@ const LaunchTable = props => {
           </div>
         </div>
         <div style={styles.tableHead}>
-          <div style={{ ...styles.headCol, width: '5vw' }}>Badge</div>
+          <div
+            style={{
+              ...styles.headCol,
+              width: '5vw',
+              justifyContent: 'center',
+            }}
+          >
+            Badge
+          </div>
           <div style={styles.headCol}>Rocket Name</div>
           <div style={styles.headCol}>Rocket Type</div>
           <div style={styles.headCol}>Launch Date</div>
