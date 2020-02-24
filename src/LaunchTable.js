@@ -1,7 +1,6 @@
 import React from 'react';
 import LoopIcon from '@material-ui/icons/Sync';
 import CheckIcon from '@material-ui/icons/Check';
-// import { Checkbox } from '@material-ui/core';
 
 const styles = {
   title: {
@@ -17,7 +16,6 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // padding: 22,
     marginTop: 10,
   },
   container: {
@@ -72,6 +70,7 @@ const styles = {
   },
   tableHead: {
     width: '100%',
+    marginBottom: 7,
     display: 'flex',
     justifyContent: 'space-between',
     background:
@@ -83,6 +82,17 @@ const styles = {
     fontSize: 17,
     display: 'flex',
     flexGrow: 2,
+  },
+  rowContainer: {
+    width: '100%',
+    height: 65,
+    display: 'flex',
+    justifyContent: 'space-between',
+    backgroundColor: '#F5F5F5',
+    fontColor: '#444444',
+    margin: '7px 0',
+    borderRadius: 7,
+    alignItems: 'center',
   },
 };
 
@@ -157,6 +167,8 @@ const LaunchTable = props => {
             Article
           </div>
         </div>
+        <div style={styles.rowContainer}>row 1</div>
+        <div style={styles.rowContainer}>row 2</div>
       </div>
     </div>
   );
