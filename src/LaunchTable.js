@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import LoopIcon from '@material-ui/icons/Sync';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-import TableRow from './components/TableRow';
 import CheckBox from './components/CheckBox';
+import Reloader from './components/Reloader';
+import TableRow from './components/TableRow';
 
 const API_URL = 'https://rozv4aak55.execute-api.us-east-1.amazonaws.com/prod';
 
@@ -37,21 +35,6 @@ const styles = {
     width: '100%',
     height: '100%',
     maxWidth: 1200,
-  },
-  icon: {
-    color: '#FFF',
-    position: 'relative',
-    top: '50%',
-    transform: 'translate(0, -50%)',
-  },
-  button: {
-    border: '2px solid white',
-    height: 36,
-    width: 36,
-    borderRadius: '50%',
-    opacity: '1.0 !important',
-    cursor: 'pointer',
-    margin: 22,
   },
   checkGroup: {
     display: 'flex',
@@ -116,27 +99,12 @@ const LaunchTable = props => {
     }
   };
 
-  const renderReload = () => {
-    if (isLoading) {
-      return (
-        <CircularProgress
-          style={{ color: '#FFF', height: 36, width: 36, margin: 24 }}
-        />
-      );
-    }
-    return (
-      <div style={styles.button} onClick={updateQuery}>
-        <LoopIcon style={styles.icon} />
-      </div>
-    );
-  };
-
   return (
     <div style={styles.container}>
       <div style={styles.title}>SpaceX Launches</div>
       <div style={styles.body}>
         <div style={styles.header}>
-          {renderReload()}
+          <Reloader isLoading={isLoading} updateQuery={updateQuery} />
           <div style={styles.checkGroup}>
             <CheckBox
               checked={state.landSuccess}
