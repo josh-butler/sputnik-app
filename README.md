@@ -1,6 +1,6 @@
 # Sputnik Web App
 
-A simple react frontend deploy as a static S3 website [https://sputnik.cloudbutler.io](https://sputnik.cloudbutler.io)
+A simple React frontend deployed as a static S3 website [https://sputnik.cloudbutler.io](https://sputnik.cloudbutler.io)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
