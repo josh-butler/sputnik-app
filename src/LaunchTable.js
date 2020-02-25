@@ -5,7 +5,7 @@ import CheckBox from './components/CheckBox';
 import Reloader from './components/Reloader';
 import TableRow from './components/TableRow';
 
-const API_URL = 'https://rozv4aak55.execute-api.us-east-1.amazonaws.com/prod';
+import config from './config.js';
 
 const styles = {
   title: {
@@ -55,6 +55,15 @@ const styles = {
     display: 'flex',
     width: '10vw',
   },
+  headColSmall: {
+    margin: '15px 25px',
+    color: '#043D67',
+    fontSize: 17,
+    display: 'flex',
+    width: '5vw',
+    justifyContent: 'center',
+  },
+  tableBody: { marginBottom: 40 },
 };
 
 const LaunchTable = props => {
@@ -70,7 +79,7 @@ const LaunchTable = props => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const result = await axios(`${API_URL}/launch${query}`);
+      const result = await axios(`${config.apiUrl}/launch${query}`);
       setData(result.data);
       setIsLoading(false);
     };
@@ -99,71 +108,65 @@ const LaunchTable = props => {
     }
   };
 
+  const renderCheckGroup = () => {
+    return (
+      <div style={styles.checkGroup}>
+        <CheckBox
+          checked={state.landSuccess}
+          label="LAND SUCCESS"
+          onCheck={handleChange}
+          target="landSuccess"
+        />
+        <CheckBox
+          checked={state.reused}
+          label="REUSED"
+          onCheck={handleChange}
+          target="reused"
+        />
+        <CheckBox
+          checked={state.withReddit}
+          label="WITH REDDIT"
+          onCheck={handleChange}
+          target="withReddit"
+        />
+      </div>
+    );
+  };
+
+  const renderTableHead = () => {
+    return (
+      <div style={styles.tableHead}>
+        <div style={styles.headColSmall}>Badge</div>
+        <div style={styles.headCol}>Rocket Name</div>
+        <div style={styles.headCol}>Rocket Type</div>
+        <div style={styles.headCol}>Launch Date</div>
+        <div style={{ ...styles.headCol, width: '40vw' }}>Details</div>
+        <div style={styles.headColSmall}>ID</div>
+        <div style={styles.headColSmall}>Article</div>
+      </div>
+    );
+  };
+
+  const renderTableBody = () => {
+    return (
+      <div style={styles.tableBody}>
+        {data.map(row => {
+          return <TableRow key={row.id} data={row} />;
+        })}
+      </div>
+    );
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.title}>SpaceX Launches</div>
       <div style={styles.body}>
         <div style={styles.header}>
           <Reloader isLoading={isLoading} updateQuery={updateQuery} />
-          <div style={styles.checkGroup}>
-            <CheckBox
-              checked={state.landSuccess}
-              label="LAND SUCCESS"
-              onCheck={handleChange}
-              target="landSuccess"
-            />
-            <CheckBox
-              checked={state.reused}
-              label="REUSED"
-              onCheck={handleChange}
-              target="reused"
-            />
-            <CheckBox
-              checked={state.withReddit}
-              label="WITH REDDIT"
-              onCheck={handleChange}
-              target="withReddit"
-            />
-          </div>
+          {renderCheckGroup()}
         </div>
-        <div style={styles.tableHead}>
-          <div
-            style={{
-              ...styles.headCol,
-              width: '5vw',
-              justifyContent: 'center',
-            }}
-          >
-            Badge
-          </div>
-          <div style={styles.headCol}>Rocket Name</div>
-          <div style={styles.headCol}>Rocket Type</div>
-          <div style={styles.headCol}>Launch Date</div>
-          <div style={{ ...styles.headCol, width: '40vw' }}>Details</div>
-          <div
-            style={{
-              ...styles.headCol,
-              width: '5vw',
-              justifyContent: 'center',
-            }}
-          >
-            ID
-          </div>
-          <div
-            style={{
-              ...styles.headCol,
-              width: '5vw',
-              justifyContent: 'center',
-            }}
-          >
-            Article
-          </div>
-        </div>
-        <div style={{ marginBottom: 40 }}>
-          {data.map(row => {
-            return <TableRow key={row.id} data={row} />;
-          })}
-        </div>
+        {renderTableHead()}
+        {renderTableBody()}
       </div>
     </div>
   );
